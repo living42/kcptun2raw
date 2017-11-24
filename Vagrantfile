@@ -29,7 +29,17 @@ Vagrant.configure("2") do |config|
   # within the machine from a port on the host machine and only allow access
   # via 127.0.0.1 to disable public access
   # config.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
-  config.vm.network "forwarded_port", guest: 1080, host: 1089, host_ip: "127.0.0.1"
+  # socks5
+  config.vm.network "forwarded_port",
+    guest: 1080,
+    host: 1089,
+    host_ip: "127.0.0.1"
+
+  # http proxy
+  config.vm.network "forwarded_port",
+    guest: 8080,
+    host: 8089,
+    host_ip: "127.0.0.1"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -77,7 +87,7 @@ Vagrant.configure("2") do |config|
     set -ex
 
     apt-get update
-    apt-get install -y supervisor software-properties-common
+    apt-get install -y supervisor privoxy software-properties-common
     add-apt-repository ppa:max-c-lv/shadowsocks-libev -y
     apt-get update
     apt-get install shadowsocks-libev -y
