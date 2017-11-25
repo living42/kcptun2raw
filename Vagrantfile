@@ -99,7 +99,7 @@ Vagrant.configure("2") do |config|
 
         wget -O /root/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz \
 	    https://github.com/xtaci/kcptun/releases/download/v20171113/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
-        mkdir /tmp/kcptun || exit 0
+        mkdir /tmp/kcptun || true
         tar xzf /root/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz -C /tmp/kcptun
         install /tmp/kcptun/client_linux_amd64 /usr/local/bin/kcptun
         rm -rf /tmp/kcptun
@@ -110,7 +110,7 @@ Vagrant.configure("2") do |config|
     if [ ! -f "/root/udp2raw_binaries-${UDP2RAW_VERSION}.tar.gz" ]
     then
         wget -O /root/udp2raw_binaries-${UDP2RAW_VERSION}.tar.gz https://github.com/wangyu-/udp2raw-tunnel/releases/download/${UDP2RAW_VERSION}/udp2raw_binaries.tar.gz
-        mkdir /tmp/udp2raw || exit 0
+        mkdir /tmp/udp2raw || true
         tar xzf /root/udp2raw_binaries-${UDP2RAW_VERSION}.tar.gz -C /tmp/udp2raw
         install /tmp/udp2raw/udp2raw_amd64_hw_aes /usr/local/bin/udp2raw
         rm -rf /tmp/udp2raw
