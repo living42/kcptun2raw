@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
     then
 
         wget -O /root/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz \
-	    https://github.com/xtaci/kcptun/releases/download/v20171113/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
+	    https://github.com/xtaci/kcptun/releases/download/v${KCPTUN_VERSION}/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz
         mkdir /tmp/kcptun || true
         tar xzf /root/kcptun-linux-amd64-${KCPTUN_VERSION}.tar.gz -C /tmp/kcptun
         install /tmp/kcptun/client_linux_amd64 /usr/local/bin/kcptun
