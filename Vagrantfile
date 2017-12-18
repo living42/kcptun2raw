@@ -81,6 +81,7 @@ Vagrant.configure("2") do |config|
        echo "--raw-mode faketcp -r 127.0.0.1:3336 --key foobarx" \
          > /vagrant/config/udp2raw.conf
     fi
+	supervisorctl reload
   SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
