@@ -75,17 +75,21 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
+
   config.vm.provision "shell", run: "always", inline: <<-SHELL
+    set -ex
+
     if [ ! -f /vagrant/config/udp2raw.conf ]
     then
        echo "--raw-mode faketcp -r 127.0.0.1:3336 --key foobarx" \
          > /vagrant/config/udp2raw.conf
     fi
-	supervisorctl reload
-  SHELL
 
-  config.vm.provision "shell", inline: <<-SHELL
-    set -ex
+    if which supervisorctl
+	then
+        supervisorctl reload
+		exit 0
+    fi
 
     apt-get update
     apt-get install -y supervisor privoxy software-properties-common
